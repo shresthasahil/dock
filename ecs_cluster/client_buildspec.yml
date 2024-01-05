@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+      
+  pre_build:
+    commands:
+      - git clone https://github.com/ppaudeldh/dbms-pipeline.git
+      - cd dbms-pipeline/client/
+      - npm install
+      
+  build:
+    commands:
+      - npm run-script build
+      
+  post_build:
+    commands:
+      - aws s3 cp --recursive ./build/ s3://dbms-client-prabin

@@ -1,0 +1,16 @@
+Reference: https://repost.aws/knowledge-center/associate-acm-certificate-alb-nlb
+
+Prerequisites
+1. Existing SSL Certificate 
+2. Import the certificate at ACM Certificate
+
+1. Open the Amazon EC2 console.
+2. In the navigation pane, choose Load Balancers, and then choose your Application Load Balancer.
+3. Choose Add listener.
+4. For Protocol, choose HTTPS.
+5. For port, choose 443.
+6. For Default action(s), choose Forward to, and then select your ALB target group from the dropdown list.
+7. For Default SSL certificate, choose From ACM (recommended) and then choose the ACM certificate.
+8. Choose Save.
+
+

@@ -1,0 +1,4 @@
+Do not forget to change CORS according to the IP hosted.
+Do not forget to change the axios urls, using .env is preffered.
+Check is backend is connected to frontend.
+Check database connection :)

@@ -1,0 +1,15 @@
+sudo apt install mysql-server;
+CREATE DATABASE IF NOT EXISTS employeeSystem;
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'mauFJcuf5dhRMQrjj';
+GRANT ALL PRIVILEGES ON employeeSystem.* TO 'test'@'localhost';
+CREATE USER 'test'@'%' IDENTIFIED BY 'mauFJcuf5dhRMQrjj';
+GRANT ALL PRIVILEGES ON employeeSystem.* TO 'test'@'%';
+FLUSH PRIVILEGES;
+
+
+-- Alter user to use mysql_native_password
+ALTER USER 'test'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'mauFJcuf5dhRMQrjj';
+ALTER USER 'test'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'mauFJcuf5dhRMQrjj';
+
+FLUSH PRIVILEGES;
+

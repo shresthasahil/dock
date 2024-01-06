@@ -25,6 +25,9 @@ app.use(express.json());
  
 //   console.log('✅  Connected as ID: ' + connection.threadId);
 // });
+app.get("/",(req, res)=>{
+res.send("Backend is working");
+});
 
 app.post("/create", (req, res) => {
   const name = req.body.name;

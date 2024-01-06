@@ -13,3 +13,12 @@ ALTER USER 'test'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'mauFJcuf5dhRMQ
 
 FLUSH PRIVILEGES;
 
+CREATE TABLE IF NOT EXISTS employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    age INT,
+    country VARCHAR(255),
+    position VARCHAR(255),
+    wage DECIMAL(10, 2)
+);
+

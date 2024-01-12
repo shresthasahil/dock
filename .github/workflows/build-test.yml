@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./all_in_docker
+        working-directory: ./all_in_docker/client
 
     steps:
     - name: Checkout Repository

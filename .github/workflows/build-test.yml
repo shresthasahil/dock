@@ -8,9 +8,10 @@ on:
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
-  defaults:
-    run:
-      working-directory: ./all_in_docker
+
+    defaults:
+      run:
+        working-directory: ./all_in_docker
 
     steps:
     - name: Checkout Repository

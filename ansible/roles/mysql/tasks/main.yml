@@ -1,0 +1,147 @@
+---
+    - name: Install the MySQL server package
+      package:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - mysql-server
+        - python3-mysqldb
+        - mysql-client 
+        - libmysqlclient-dev
+
+    # - name: Copy files from root to EBS
+    #   command: |
+    #     sudo rsync -av /var/lib/mysql /data
+
+    # - name: Add mysqld.cnf to user home
+    #   template:
+    #     src: mysqld.cnf.j2
+    #     dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    
+    # - name: AppArmor access rules
+    #   lineinfile:
+    #     path: /etc/apparmor.d/tunables/alias
+    #     line: "alias /var/lib/mysql/ -> /data/mysql/,"
+    #     state: present
+    #     insertafter: EOF
+
+    - name: Start and enable the MySQL service
+      service:
+        name: mysql
+        state: started
+        enabled: yes   
+
+    - name: Ensure root user can only login from localhost
+      mysql_user:
+        login_password: "{{ mysql_admin_password }}"
+        check_implicit_admin: yes
+        name: root
+        host: "{{ mysql_host }}"
+        password: "{{ mysql_admin_password }}"
+        state: present
+      with_items:
+        - localhost
+        - 127.0.0.1
+        - ::1
+      loop_control:
+        loop_var: mysql_host
+
+    - name: Reload privilege tables
+      command: |
+        mysql -p{{ mysql_admin_password }} -ne "{{ flush_privilege }}"
+      with_items:
+        - FLUSH PRIVILEGES
+      loop_control:
+        loop_var: flush_privilege
+      changed_when: False
+
+    - name: Remove anonymous users
+      command: |
+        mysql -p{{ mysql_admin_password }} -ne "{{ remove_user }}"
+      with_items:
+        - DELETE FROM mysql.user WHERE User=''
+      loop_control:
+        loop_var: remove_user
+      changed_when: False
+
+    - name: Disallow root login remotely
+      command: |
+        mysql -p{{ mysql_admin_password }} -ne "{{ root_login }}"
+      with_items:
+        - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
+      loop_control:
+        loop_var: root_login
+      changed_when: False
+
+    - name: Remove test database and access to it
+      command: |
+        mysql -p{{ mysql_admin_password }} -ne "{{ remove_testdb }}"
+      with_items:
+        - DROP DATABASE IF EXISTS test
+        - DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'
+      loop_control:
+        loop_var: remove_testdb
+      changed_when: False
+
+    - name: Reload privilege tables
+      command: |
+        mysql -p{{ mysql_admin_password }} -ne "{{ reload_privilege }}"
+      with_items:
+        - FLUSH PRIVILEGES
+      loop_control:
+        loop_var: reload_privilege
+      changed_when: False
+
+    # - name: Set the root password
+    #   mysql_user:
+    #     name: root
+    #     password: "{{mysql_admin_password}}"
+    #     host: localhost
+    #     priv: "*.*:ALL,GRANT"
+    #     state: present
+    #     check_implicit_admin: true
+
+    - name: Create new database
+      mysql_db:
+        login_user: root
+        login_password: "{{mysql_admin_password}}"
+        name: "{{mysql_tic_dbname}}"
+        state: present
+
+    - name: Create a sample user
+      mysql_user:
+        login_user: root
+        login_password: "{{mysql_admin_password}}"
+        name: "{{mysql_tic_username}}"
+        password: "{{mysql_tic_password}}"
+        host: "%"
+        priv: '{{mysql_tic_dbname}}.*:ALL'
+        state: present
+    
+    - name: Copy files from root to EBS
+      command: |
+        sudo rsync -av /var/lib/mysql /data
+
+    - name: Add mysqld.cnf to user home
+      template:
+        src: mysqld.cnf.j2
+        dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    
+    - name: AppArmor access rules
+      lineinfile:
+        path: /etc/apparmor.d/tunables/alias
+        line: "alias /var/lib/mysql/ -> /data/mysql/,"
+        state: present
+        insertafter: EOF
+
+    - name: Restart AppArmor service
+      service:
+        name: apparmor
+        state: restarted
+
+    - name: Restart MySQL service
+      service:
+        name: mysql
+        state: restarted
+

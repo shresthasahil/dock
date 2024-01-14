@@ -1,4 +1,8 @@
 ---
+  - name: Update APT package cache
+    apt:
+      update_cache: yes
+
   - name: Install java version 11 through apt
     ansible.builtin.apt:
       name: openjdk-11-jdk

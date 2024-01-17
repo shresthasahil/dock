@@ -14,7 +14,8 @@ function App() {
   const [employeeList, setEmployeeList] = useState([]);
 
   const addEmployee = () => {
-    Axios.post("http://54.227.76.194:3001/create", {
+    console.log(process.env.REACT_APP_API_URL)
+    Axios.post(process.env.REACT_APP_API_URL+"/create", {
       name: name,
       age: age,
       country: country,
@@ -35,13 +36,13 @@ function App() {
   };
 
   const getEmployees = () => {
-    Axios.get("http://54.227.76.194:3001/employees").then((response) => {
+    Axios.get(process.env.REACT_APP_API_URL+"/employees").then((response) => {
       setEmployeeList(response.data);
     });
   };
 
   const updateEmployeeWage = (id) => {
-    Axios.put("http://54.227.76.194:3001/update", { wage: newWage, id: id }).then(
+    Axios.put(process.env.REACT_APP_API_URL+"/update", { wage: newWage, id: id }).then(
       (response) => {
         setEmployeeList(
           employeeList.map((val) => {
@@ -62,7 +63,7 @@ function App() {
   };
 
   const deleteEmployee = (id) => {
-    Axios.delete(`http://54.227.76.194:3001/delete/${id}`).then((response) => {
+    Axios.delete(process.env.REACT_APP_API_URL+`/delete/${id}`).then((response) => {
       setEmployeeList(
         employeeList.filter((val) => {
           return val.id != id;

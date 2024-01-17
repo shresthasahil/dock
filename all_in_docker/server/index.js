@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 
 app.use(cors({
-  origin: 'http://54.227.76.194:3000'
+  origin: '*'
 }));
 
 const db = mysql.createPool({

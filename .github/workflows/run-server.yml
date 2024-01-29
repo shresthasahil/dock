@@ -23,7 +23,7 @@ jobs:
 
       - name: Update Git code on the server
         run: |
-          ssh ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "pwd"
+          ssh ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "ls"
 
       - name: Install dependencies
         run: |

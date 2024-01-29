@@ -29,8 +29,11 @@ jobs:
     #     - CI=false npm run build
     #     - tar -czvf build.tar.gz build
 
-    - name: Check
+    - name: Check pwd
       run: pwd
+
+    - name: Check ls
+      run: ls
 
     - name: Check file existence
       id: check_files

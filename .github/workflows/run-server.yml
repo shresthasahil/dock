@@ -29,15 +29,15 @@ jobs:
     #     rm: true
     #     source: distfiles/*
     #     target: "${{ secrets.TARGET_DIR }}"
-      # - name: Run scripts on servers via SSH
-      #   uses: appleboy/ssh-action@v0.1.6
-      #   with:
-      #     host: ${{ secrets.REMOTE_HOST }}
-      #     username: ${{ secrets.REMOTE_USERNAME }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       sudo apt install nginx
+      - name: Run scripts on servers via SSH
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo apt install nginx
             
       - name: copy file via ssh keyss
         uses: appleboy/scp-action@v0.1.7

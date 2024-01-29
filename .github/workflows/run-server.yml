@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout codec
         uses: actions/checkout@v2
 
       - name: Install SSH key

@@ -30,7 +30,7 @@ jobs:
     #     - tar -czvf build.tar.gz build
 
 
-    - name: Check ls
+    - name: Check ls j
       run: ls
 
     - name: Check file existence

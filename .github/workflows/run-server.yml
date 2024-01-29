@@ -20,12 +20,12 @@ jobs:
 
       - name: Update Git code on the server
         run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/docker_course/all_in_docker && git pull"
+          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/devops_class/all_in_docker && git pull"
 
       - name: Install dependencies
         run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/docker_course/all_in_docker && npm install"
+          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/devops_class/all_in_docker && npm install"
 
       - name: Start the Node.js application
         run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/docker_course/all_in_docker && npm start"
+          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/devops_class/all_in_docker && npm start"

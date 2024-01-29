@@ -27,7 +27,7 @@ jobs:
     - name: Build Application
       run: CI=false npm run build
     - name: Check
-      run: pwd | ls
+      run: pwd
 
     - name: Check file existence
       id: check_files

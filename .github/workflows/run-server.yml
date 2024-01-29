@@ -23,8 +23,7 @@ jobs:
 
       - name: Update Git code on the server
         run: |
-          - pwd
-          - ssh ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/devops_class/all_in_docker && git pull"
+          ssh ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "pwd"
 
       - name: Install dependencies
         run: |

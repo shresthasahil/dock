@@ -1,0 +1,30 @@
+version: '3'
+services:
+  frontend:
+    build: ./client/
+    restart: always
+    ports:
+      - 3000:80
+
+  backend:
+    build: ./server/
+    restart: always
+    ports:
+      - 3001:3001
+
+  mysql:
+    image: mysql/mysql-server:5.7
+    command: --init-file /data/application/init.sql
+    restart: always
+    environment:
+      MYSQL_DATABASE: employeeSystem
+      MYSQL_ROOT_PASSWORD: mauFJcuf5dhRMQrjj
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306
+    volumes:
+      - ./init.sql:/data/application/init.sql
+      - mysql_server_data:/var/lib/mysql
+  
+volumes: 
+  mysql_server_data:

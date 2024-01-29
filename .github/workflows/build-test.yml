@@ -3,7 +3,7 @@ name: Transfer Build Files
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
   build:

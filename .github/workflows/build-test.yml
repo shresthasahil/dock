@@ -36,7 +36,9 @@ jobs:
   transfer-files:
     runs-on: ubuntu-latest
     needs: build
-
+    defaults:
+      run:
+        working-directory: ./all_in_docker/client
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2

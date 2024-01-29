@@ -33,14 +33,14 @@ jobs:
       id: check_files
       uses: andstor/file-existence-action@v1
       with:
-        files: "./build"
+        files: "build"
         allow_failure: true
 
     - name: Archive Build Files
       uses: actions/upload-artifact@v2
       with:
-        name: build-files
-        path: ./build
+        name: build
+        path: ./
 
   transfer-files:
     runs-on: ubuntu-latest
@@ -55,8 +55,8 @@ jobs:
     - name: Download Build Files
       uses: actions/download-artifact@v2
       with:
-        name: build-files
-        path: ./build
+        name: build
+        path: ./
 
     - name: Transfer Build Files to Ubuntu Instance
       uses: appleboy/scp-action@master

@@ -36,7 +36,7 @@ jobs:
       id: check_files
       uses: andstor/file-existence-action@v1
       with:
-        files: "package.json"
+        files: "src/index.js"
         allow_failure: true
 
     - name: Archive Build Files

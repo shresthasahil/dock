@@ -12,15 +12,17 @@ jobs:
     steps:
       - name: Checkout codecs
         uses: actions/checkout@v2
-      
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
+    
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@v0.1.7
         with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: 'test'
-          
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 
+          source: "all_in_docker/client/package.json"
+          target: /tmp
+
 
       - name: Update Git code on the servers
         run: |

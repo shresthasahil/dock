@@ -21,7 +21,7 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 
 
-      - name: Update Git code on the server
+      - name: Update Git code on the servers
         run: |
           ssh ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "ls"
 

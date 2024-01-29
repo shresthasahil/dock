@@ -26,6 +26,15 @@ jobs:
 
     - name: Build Application
       run: CI=false npm run build
+    - name: Check
+      run: pwd | ls
+
+    - name: Check file existence
+      id: check_files
+      uses: andstor/file-existence-action@v1
+      with:
+        files: "./build"
+        allow_failure: true
 
     - name: Archive Build Files
       uses: actions/upload-artifact@v2

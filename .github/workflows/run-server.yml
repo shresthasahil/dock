@@ -13,15 +13,15 @@ jobs:
       - name: Checkout codecs
         uses: actions/checkout@v2
     
-      - name: Run scripts on servers via SSH
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          hhost: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USERNAME }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo apt install nginx
+      # - name: Run scripts on servers via SSH
+      #   uses: appleboy/ssh-action@v0.1.6
+      #   with:
+      #     hhost: ${{ secrets.REMOTE_HOST }}
+      #     username: ${{ secrets.REMOTE_USERNAME }}
+      #     port: ${{ secrets.SSH_PORT }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       sudo apt install nginx
             
       - name: copy file via ssh key
         uses: appleboy/scp-action@v0.1.7
@@ -30,8 +30,8 @@ jobs:
           username: ${{ secrets.REMOTE_USERNAME }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo && hostname
+          source: "help.txt"
+          target: /tmp
 
 
       - name: Update Git code on the servers

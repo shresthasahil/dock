@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: executing remote ssh commands using passwordss
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-                      whoami
+      # - name: executing remote ssh commands using passwordss
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.REMOTE_HOST }}
+      #     username: ${{ secrets.REMOTE_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #                 whoami
 
-      - name: Checkout codecs
-        uses: actions/checkout@v2
+      # - name: Checkout codecs
+      #   uses: actions/checkout@v2
     # steps:
     # - uses: actions/checkout@v2
     # - run: mkdir ~/distfiles
@@ -38,25 +38,25 @@ jobs:
     #     rm: true
     #     source: distfiles/*
     #     target: "${{ secrets.TARGET_DIR }}"
-      - name: Run scripts on servers via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USERNAME }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo apt install nginx
+      # - name: Run scripts on servers via SSH
+      #   uses: appleboy/ssh-action@v1.0.3
+      #   with:
+      #     host: ${{ secrets.REMOTE_HOST }}
+      #     username: ${{ secrets.REMOTE_USERNAME }}
+      #     port: ${{ secrets.SSH_PORT }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       sudo apt install nginx
             
-      - name: copy file via ssh keyss
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USERNAME }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ./help.txt
-          target: /tmp
+      # - name: copy file via ssh keyss
+      #   uses: appleboy/scp-action@v0.1.7
+      #   with:
+      #     host: ${{ secrets.REMOTE_HOST }}
+      #     username: ${{ secrets.REMOTE_USERNAME }}
+      #     port: ${{ secrets.SSH_PORT }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     source: ./help.txt
+      #     target: /tmp
 
 
       - name: Update Git code on the servers

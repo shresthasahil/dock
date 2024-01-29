@@ -12,6 +12,14 @@ jobs:
     steps:
       - name: Checkout codecs
         uses: actions/checkout@v2
+      - name: executing remote ssh commands using ssh key
+        uses: ./
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: whoami
 
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.5.3

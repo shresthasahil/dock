@@ -39,7 +39,7 @@ jobs:
       #     script: |
       #       sudo apt install nginx
             
-      - name: copy file via ssh keys
+      - name: copy file via ssh keyss
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.REMOTE_HOST }}

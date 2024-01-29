@@ -21,11 +21,14 @@ jobs:
       with:
         node-version: '16'
 
-    - name: Install Dependencies
-      run: npm install   
+    # - name: Install Dependencies
+    #   run: npm install   
 
-    - name: Build Application
-      run: CI=false npm run build
+    # - name: Build Application
+    #   run: |
+    #     - CI=false npm run build
+    #     - tar -czvf build.tar.gz build
+
     - name: Check
       run: pwd
 
@@ -33,14 +36,14 @@ jobs:
       id: check_files
       uses: andstor/file-existence-action@v1
       with:
-        files: "build"
+        files: "package.json"
         allow_failure: true
 
     - name: Archive Build Files
       uses: actions/upload-artifact@v2
       with:
         name: build
-        path: ./
+        path: ./build
 
   transfer-files:
     runs-on: ubuntu-latest

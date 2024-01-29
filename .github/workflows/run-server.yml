@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.REMOTE_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-                      sudo apt install nginx
+                      whoami
 
       - name: Checkout codecs
         uses: actions/checkout@v2

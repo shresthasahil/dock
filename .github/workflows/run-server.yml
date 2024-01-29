@@ -21,7 +21,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            echo && hostname
+            sudo apt install nginx
             
       - name: copy file via ssh key
         uses: appleboy/scp-action@v0.1.7

@@ -20,8 +20,8 @@ jobs:
           username: ${{ secrets.REMOTE_USERNAME }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "all_in_docker/client/package.json"
-          target: /tmp
+          script: |
+            echo && hostname
 
 
       - name: Update Git code on the servers

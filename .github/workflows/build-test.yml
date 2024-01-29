@@ -29,8 +29,6 @@ jobs:
     #     - CI=false npm run build
     #     - tar -czvf build.tar.gz build
 
-    - name: Check pwd
-      run: pwd
 
     - name: Check ls
       run: ls

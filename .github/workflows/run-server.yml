@@ -18,8 +18,8 @@ jobs:
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: 'test'
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 
+      # - name: Adding Known Hosts
+      #   run: ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 
 
       - name: Update Git code on the servers
         run: |
@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          ssh ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/devops_class/all_in_docker && npm install"
+          ssh ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "cd /home/ubuntu/devops_class/all_in_docker/client && npm install"
 
       - name: Start the Node.js application
         run: |

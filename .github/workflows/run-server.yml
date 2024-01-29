@@ -23,15 +23,15 @@ jobs:
           script: |
             sudo apt install nginx
             
-      # - name: copy file via ssh key
-      #   uses: appleboy/scp-action@v0.1.7
-      #   with:
-      #     host: ${{ secrets.REMOTE_HOST }}
-      #     username: ${{ secrets.REMOTE_USERNAME }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     source: "help.txt"
-      #     target: /tmp
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "help.txt"
+          target: /tmp
 
 
       - name: Update Git code on the servers

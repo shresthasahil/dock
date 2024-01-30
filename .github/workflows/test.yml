@@ -1,25 +1,29 @@
 name: Npm start
+
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu latest
+    runs-on: ubuntu-latest
 
-  steps:
-  - name: nvm install
-    run: 
-      cd ./all_in-docker/server
-      nvm install latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  - name : npm install
-    run: 
-      cd ./all_in-docker/server
-      npm install
-      
-  - name: npm start
-    run:
-      cd ./all_in-docker/server
-      index node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: |
+          cd ./all_in-docker/server
+          npm install
+
+      - name: Build
+        run: 
+          cd ./all_in-docker/server
+          node index.js

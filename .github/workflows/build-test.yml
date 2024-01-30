@@ -21,13 +21,12 @@ jobs:
       with:
         node-version: '16'
 
-    # - name: Install Dependencies
-    #   run: npm install   
+    - name: Install Dependencies
+      run: npm install   
 
-    # - name: Build Application
-    #   run: |
-    #     - CI=false npm run build
-    #     - tar -czvf build.tar.gz build
+    - name: Build Application
+      run: |
+        - CI=false npm run build
 
 
     - name: Check ls j

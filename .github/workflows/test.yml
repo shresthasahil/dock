@@ -25,6 +25,12 @@ jobs:
         run: 
           npm install
 
-      - name: npm start
+      - name: npm build
         run: 
-          node index.js
+          npm run build
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: backend-artifacts
+          path: all_in_docker/server
+

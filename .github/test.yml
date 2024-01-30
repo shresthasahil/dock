@@ -18,12 +18,7 @@ jobs:
     run: 
       cd ./all_in-docker/server
       npm install
-
-  - name: npm build
-    run: 
-      cd ./all_in-docker/server
-      npm run build 
-
+      
   - name: npm start
     run:
       cd ./all_in-docker/server

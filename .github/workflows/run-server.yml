@@ -57,7 +57,13 @@ jobs:
       #     key: ${{ secrets.SSH_PRIVATE_KEY }}
       #     source: ./help.txt
       #     target: /tmp
+      - name: Install SSH 
+        uses: webfactory/ssh-agent@v0.4.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      # - name: Copy files
+      #   run: scp -P 22 path/to/files ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }}:/tmp
 
       - name: Update Git code on the serverssss
         run: |

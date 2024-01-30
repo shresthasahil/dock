@@ -59,7 +59,7 @@ jobs:
       #     target: /tmp
 
 
-      - name: Update Git code on the serverss
+      - name: Update Git code on the serversss
         run: |
           ssh ${{ secrets.REMOTE_USERNAME }}@${{ secrets.REMOTE_HOST }} "ls"
 

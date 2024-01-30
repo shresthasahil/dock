@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: all_in-docker/server
+        working-directory: all_in_docker/server
 
     steps:
       - name: Checkout repository

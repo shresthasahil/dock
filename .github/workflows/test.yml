@@ -20,10 +20,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./all_in-docker/server
+          cd all_in-docker/server
           npm install
 
       - name: Build
         run: 
-          cd ./all_in-docker/server
+          cd all_in-docker/server
           node index.js

@@ -1,0 +1,30 @@
+name: Npm start
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu latest
+
+  steps:
+  - name: nvm install
+    run: 
+      cd ./all_in-docker/server
+      nvm install latest
+
+  - name : npm install
+    run: 
+      cd ./all_in-docker/server
+      npm install
+
+  - name: npm build
+    run: 
+      cd ./all_in-docker/server
+      npm run build 
+
+  - name: npm start
+    run:
+      cd ./all_in-docker/server
+      index node.js

@@ -110,7 +110,7 @@ function App() {
             setWage(event.target.value);
           }}
         />
-        <button onClick={addEmployee}>Adds Employee</button>
+        <button onClick={addEmployee}>Addsdfasdf Employee</button>
       </div>
       <div className="employees">
         <button onClick={getEmployees}>Show Employees</button>
